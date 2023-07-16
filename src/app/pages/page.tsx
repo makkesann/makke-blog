@@ -2,21 +2,18 @@ import Link from "next/link"
 import { FC } from "react"
 import { client } from "@/libs/client"
 
+type Data = any[]
 
-type Props = {
-  blog?: any[]
-}
-
-export const Page: FC<Props> = async () => {
-  const data = await getStaticProps()
-  console.log(data)
+export const Page: FC = async () => {
+  const data: Data = await getAllBlogs()
+  if (!data) return<></>
   return (
     <div>
     <ul>
       
       {data && data.map((data) => (
         <li key={data.id}>
-          <Link href={`/data/${data.id}`}>{data.title}</Link>
+          <Link href={{pathname: `/blog/${data.id}` }}>{data.title}</Link>
         </li>
       ))}
     </ul>
@@ -25,11 +22,10 @@ export const Page: FC<Props> = async () => {
   )
 }
 
-const getStaticProps = async () => {
+const getAllBlogs = async() => {
   const data = await client.getList({ 
     endpoint: "blogs" 
   });
-
   return data.contents
 };
 
