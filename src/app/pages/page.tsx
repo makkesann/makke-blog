@@ -4,7 +4,7 @@ import { client } from "@/libs/client"
 
 type Data = any[]
 
-export const Page: FC = async () => {
+const Page: FC = async () => {
   const data: Data = await getAllBlogs()
   if (!data) return<></>
   return (

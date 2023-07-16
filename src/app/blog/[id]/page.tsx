@@ -6,7 +6,6 @@ type Params = {
 }
 
 type Props = {
-  blog: any[];
   params: Params
 };
 
