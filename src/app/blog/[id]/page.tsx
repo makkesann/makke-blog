@@ -1,5 +1,7 @@
 import { client } from "@/libs/client"
 import { FC } from "react";
+import type { Metadata } from 'next'
+import { GenerateMetadata } from "@/component/metadata";
 
 type Params = {
   id: string
@@ -7,22 +9,24 @@ type Params = {
 
 type Props = {
   params: Params
-};
+}
 
 
 const BlogId: FC<Props> = async ({ params }) => {
   const blog = await getBlog(params.id)
   if (!blog) return<></>
   return (
-    <main>
-      <h1>{blog.title}</h1>
-      <p>{blog.publishedAt}</p>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${blog.content}`,
-        }}
-      />
-    </main>
+    <>
+      <main>
+        <h1>{blog.title}</h1>
+        <p>{blog.publishedAt}</p>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `${blog.content}`,
+          }}
+        />
+      </main>
+    </>
   );
 };
 
@@ -33,3 +37,10 @@ const getBlog = async (id: string) => {
 
   return data
 };
+
+export const generateMetadata = async ({ params }:Props): Promise<Metadata> => {
+  const data = await getBlog(params.id)
+  return {
+    title: data.title,
+  }
+}
