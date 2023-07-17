@@ -19,7 +19,7 @@ const BlogId: FC<Props> = async ({ params }) => {
       <p>{blog.publishedAt}</p>
       <div
         dangerouslySetInnerHTML={{
-          __html: `${blog}`,
+          __html: `${blog.content}`,
         }}
       />
     </main>
