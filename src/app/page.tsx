@@ -8,17 +8,13 @@ const Page: FC = async () => {
   const data: Data = await getAllBlogs()
   if (!data) return<></>
   return (
-    <div>
-    <ul>
-      
+    <>
       {data && data.map((data) => (
-        <li key={data.id}>
-          <Link href={{pathname: `/blog/${data.id}` }}>{data.title}</Link>
-        </li>
+        <div key={data.id}>
+          <Link href={{pathname: `/blog/${data.id}` }} className="text-blue-600 dark:text-blue-500 hover:underline">{data.title}</Link>
+        </div>
       ))}
-    </ul>
-    かなしい
-  </div>
+    </>
   )
 }
 
