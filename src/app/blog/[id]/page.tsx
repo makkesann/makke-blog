@@ -1,7 +1,6 @@
 import { client } from "@/libs/client"
 import { FC } from "react";
 import type { Metadata } from 'next'
-import { GenerateMetadata } from "@/component/metadata";
 
 type Params = {
   id: string
