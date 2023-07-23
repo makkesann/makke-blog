@@ -1,9 +1,10 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { Header } from '@/component/header'
+import { Header } from '@/component/Header'
+import { Container } from '@mui/material'
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'まっけのぶろぐ',
@@ -17,10 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body>
         <Header />
         <main className='bg-blue-100'>
-          <div className="container mx-auto">{children}</div>
+          <Container>{children}</Container>
         </main>
       </body>
     </html>

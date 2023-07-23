@@ -1,20 +1,18 @@
-import Link from "next/link"
 import { FC } from "react"
 import { client } from "@/libs/client"
-
-type Data = any[]
+import { Blog } from "@/types/microCMS"
+import { BlogCard } from "@/component/BlogCard"
+import { Box } from "@mui/material"
 
 const Page: FC = async () => {
-  const data: Data = await getAllBlogs()
-  if (!data) return<></>
+  const blogs: Blog[] | null = await getAllBlogs()
+  if (!blogs) return<></>
   return (
-    <>
-      {data && data.map((data) => (
-        <div key={data.id}>
-          <Link href={{pathname: `/blog/${data.id}` }} className="text-blue-600 dark:text-blue-500 hover:underline">{data.title}</Link>
-        </div>
+    <Box className="py-16">
+      {blogs.map((blog) => (
+        <BlogCard blog={blog} key={blog.id} />
       ))}
-    </>
+    </Box>
   )
 }
 
